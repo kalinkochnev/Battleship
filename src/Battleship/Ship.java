@@ -31,20 +31,20 @@ public class Ship {
     }
 
     public ShipPart getLast() {
-        return shipParts.get(shipParts.size());
+        return shipParts.get(shipParts.size()-1);
     }
 
     public int length() {
         return shipParts.size();
     }
 
-    public ShipPart getEnd() {
-        return shipParts.get(shipParts.size()-1);
-    }
-
     public ShipPart getShipPart(int index) {
         return this.shipParts.get(index);
     }
+
+    /*public void setShipParts(List ships) {
+        this.
+    }*/
 
     public void placeShip() {
 

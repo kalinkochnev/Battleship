@@ -11,32 +11,28 @@ public class BattleBoard {
     }
 
     public static BattleBoard blankBoard() {
-        Space[][] board = new Space[8][8];
+        Space[][] board = new Space[10][10];
         for (int row = 0; row < board.length; row++) {
             for (int col = 0; col < board.length; col++) {
                 board[row][col] = new Space(row, col);
             }
         }
 
-
         Team red = new Team("A");
         Team black = new Team("B");
 
-        // Initalizes the piece variables in the checkerboard class
-        /*red.initTeam(0, 12);
-        black.initTeam(12, 24);*/
+        // TODO get input from user for spaces
 
-        //Sets the first and last the rows to generated ones
         return new BattleBoard(board);
     }
 
-    boolean inBounds(Ship ship) {
+    public boolean inBounds(Ship ship) {
         boolean firstInBounds = this.inBounds(ship.getFirst().getSpace());
         boolean secondInBounds = this.inBounds(ship.getLast().getSpace());
         return firstInBounds && secondInBounds;
     }
 
-    boolean inBounds(Space space) {
+    public boolean inBounds(Space space) {
         if (space.column >= 0 && space.column <= board.length - 1) {
             if (space.row >= 0 && space.row <= board.length - 1) {
                 return true;

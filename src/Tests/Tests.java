@@ -10,10 +10,4 @@ import java.io.InputStream;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class Tests {
-    BattleBoard board;
-
-    @AfterEach
-    void resetBoard() {
-        board = BattleBoard.blankBoard();
-    }
 }

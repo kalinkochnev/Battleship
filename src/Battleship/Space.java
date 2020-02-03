@@ -11,7 +11,7 @@ public class Space {
         this.part = part;
     }
 
-    public Space(int column, int row) {
+    public Space(int row, int column) {
         this.column = column;
         this.row = row;
         this.part = null;
