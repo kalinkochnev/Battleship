@@ -11,7 +11,7 @@ public class Ship {
     public Ship(Team team, direction dir, ShipPart[] parts) {
         this.team = team;
         this.dir = dir;
-        this.shipParts = (ArrayList<ShipPart>) ShipPart.toArray(parts);
+        this.shipParts = new ArrayList<>(ShipPart.toArray(parts));
     }
 
     public enum direction {

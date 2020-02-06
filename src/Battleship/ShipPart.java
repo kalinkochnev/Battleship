@@ -1,6 +1,7 @@
 package Battleship;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ShipPart {
@@ -15,11 +16,6 @@ public class ShipPart {
     }
 
     public static List<ShipPart> toArray(ShipPart[] parts) {
-        List<ShipPart> partList = new ArrayList<ShipPart>();
-        for (int i = 0; i < parts.length; i++) {
-           partList.add(parts[i]);
-        }
-
-        return partList;
+        return Arrays.asList(parts);
     }
 }

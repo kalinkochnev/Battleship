@@ -2,6 +2,7 @@ package Battleship;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class BattleBoard {
     Space[][] board;
@@ -26,6 +27,10 @@ public class BattleBoard {
         return new BattleBoard(board);
     }
 
+    public Space[][] getBoardSpaces() {
+        return board;
+    }
+
     public boolean inBounds(Ship ship) {
         boolean firstInBounds = this.inBounds(ship.getFirst().getSpace());
         boolean secondInBounds = this.inBounds(ship.getLast().getSpace());
@@ -41,42 +46,41 @@ public class BattleBoard {
         return false;
     }
 
-    ArrayList<Space> getRowSpaces(int rowNum, int start, int end) {
-        if (!this.inBounds(new Space(rowNum, start)) || !this.inBounds(new Space(rowNum, end))) {
-            return new ArrayList<Space>();
+    public Space[] getRowSpaces(int rowNum, int start, int end) {
+        Space[] newRow = new Space[end + 1- start];
+
+        for (int space = start; space <= end; space++) {
+            newRow[space - start] = board[rowNum][space];
         }
 
-        Space[] row = board[rowNum];
-        ArrayList<Space> spaces = new ArrayList<>();
+        return newRow;
+    }
 
-        for (int space = start; space < end; space++) {
-            spaces.add(row[space]);
+    public Space[] getRow(int rowNum) {
+        return getRowSpaces(rowNum, 0, board.length-1);
+    }
+
+    public Space[] getCol(int colNum) {
+        return getColumnSpaces(colNum, 0, board.length-1);
+    }
+
+    public Space[] getColumnSpaces(int colNum, int start, int end) {
+        Space[] spaces = new Space[end + 1 - start];
+
+        for (int row = start; row <= end; row++) {
+            spaces[row - start] = board[row][colNum];
         }
 
         return spaces;
     }
 
-    ArrayList<Space> getRow(int rowNum) {
-        return getRowSpaces(rowNum, 0, board.length);
-    }
-
-    ArrayList<Space> getColumnSpaces(int colNum, int start, int end) {
-        ArrayList<Space> spaces = new ArrayList<>();
-
-        for (int row = start; row < end; row++) {
-            spaces.add(board[row][colNum]);
-        }
-
-        return spaces;
-    }
-
-    ArrayList<Space> getColumn(int colNum) {
+    Space[] getColumn(int colNum) {
         return getColumnSpaces(colNum, 0, board.length);
     }
 
     // Test that the spaces are the same length as the ship
     void setSpaces(Space start, Ship ship) {
-        ArrayList<Space> spaces = new ArrayList<>();
+        Space[] spaces = new Space[ship.length()];
 
         switch (ship.getDir()) {
             case VERTICAL:
@@ -85,10 +89,10 @@ public class BattleBoard {
                 spaces = this.getRowSpaces(start.row, start.column, start.column + ship.length());
         }
 
-        if (this.inBounds(ship) && spaces.size() != 0) {
-            for (int space = 0; space < spaces.size(); space++) {
+        if (this.inBounds(ship) && spaces.length != 0) {
+            for (int space = 0; space < spaces.length; space++) {
                 ShipPart part = ship.getShipPart(space);
-                Space shipPartSpace = spaces.get(space);
+                Space shipPartSpace = spaces[space];
                 shipPartSpace.setShipPart(part);
                 part.setSpace(shipPartSpace);
             }
