@@ -1,6 +1,7 @@
 package Battleship;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Ship {
@@ -11,7 +12,7 @@ public class Ship {
     public Ship(Team team, direction dir, ShipPart[] parts) {
         this.team = team;
         this.dir = dir;
-        this.shipParts = new ArrayList<>(ShipPart.toArray(parts));
+        this.shipParts = new ArrayList<>(Arrays.asList(parts));
     }
 
     public enum direction {
@@ -22,8 +23,12 @@ public class Ship {
         return this.dir;
     }
 
-    public List<ShipPart> getParts() {
-        return shipParts;
+    public ShipPart[] getParts() {
+        return ShipPart.toArray(shipParts);
+    }
+
+    public void setShipParts(ShipPart[] parts) {
+        this.shipParts = new ArrayList<>(Arrays.asList(parts));
     }
 
     public ShipPart getFirst() {

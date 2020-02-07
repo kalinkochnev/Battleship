@@ -10,7 +10,7 @@ public class BattleBoard {
     BattleBoard(Space[][] board) {
         this.board = board;
     }
-
+    
     public static BattleBoard blankBoard() {
         Space[][] board = new Space[10][10];
         for (int row = 0; row < board.length; row++) {
@@ -79,15 +79,19 @@ public class BattleBoard {
     }
 
     // Test that the spaces are the same length as the ship
-    void setSpaces(Space start, Ship ship) {
+    public void setSpaces(Space start, Ship ship) {
         Space[] spaces = new Space[ship.length()];
 
         switch (ship.getDir()) {
             case VERTICAL:
-                spaces = this.getRowSpaces(start.row, start.column, start.column + ship.length());
+                spaces = this.getColumnSpaces(start.column, start.row, start.row + ship.length());
             case HORIZONTAL:
                 spaces = this.getRowSpaces(start.row, start.column, start.column + ship.length());
         }
+
+        ShipPart[] parts = ShipPart.generateParts(ship.length(), false);
+        parts = ShipPart.setSpaces(parts, spaces);
+        ship.setShipParts(parts);
 
         if (this.inBounds(ship) && spaces.length != 0) {
             for (int space = 0; space < spaces.length; space++) {

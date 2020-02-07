@@ -111,5 +111,16 @@ public class BattleBoardTests {
         };
         assertArrayEquals(row, board.getColumnSpaces(9, 1, 8));
     }
+
+    @Test
+    void testSetSpaces() {
+        Team black = new Team("black");
+        ShipPart[] parts = ShipPart.generateParts(6, false);
+        Ship ship = new Ship(black, Ship.direction.HORIZONTAL, parts);
+        Space origin = new Space(0, 0);
+        board.setSpaces(origin, ship);
+
+        assertArrayEquals(parts, board.getRowSpaces(0, 0, 6));
+    }
 }
 

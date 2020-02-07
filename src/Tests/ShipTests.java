@@ -30,8 +30,8 @@ public class ShipTests {
 
         Team team_a = new Team("A");
         Ship big_ship = new Ship(team_a, Ship.direction.HORIZONTAL, parts);
-        ArrayList<ShipPart> ship_parts = (ArrayList<ShipPart>) big_ship.getParts();
-        assertEquals(ship_parts, new ArrayList<>( ShipPart.toArray(parts)));
+        ShipPart[] ship_parts = big_ship.getParts();
+        assertArrayEquals(parts, ship_parts);
     }
 
     @Test
