@@ -10,7 +10,7 @@ public class BattleBoard {
     BattleBoard(Space[][] board) {
         this.board = board;
     }
-    
+
     public static BattleBoard blankBoard() {
         Space[][] board = new Space[10][10];
         for (int row = 0; row < board.length; row++) {
