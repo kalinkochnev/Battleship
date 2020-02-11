@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Ship {
     private Team team;
-    private ArrayList<ShipPart> shipParts;
+    private List<ShipPart> shipParts;
     private direction dir;
 
     public Ship(Team team, direction dir, ShipPart[] parts) {
@@ -16,7 +16,7 @@ public class Ship {
     }
 
     public enum direction {
-        VERTICAL, HORIZONTAL
+        VERTICAL, HORIZONTAL, NONE
     }
 
     public direction getDir() {

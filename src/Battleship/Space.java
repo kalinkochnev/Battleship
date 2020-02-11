@@ -21,6 +21,13 @@ public class Space {
         this.part = part;
     }
 
+    public void setShipPart(ShipPart[] parts) {
+        for (int i = 0; i < parts.length; i++) {
+            this.setShipPart(parts[i]);
+        }
+    }
+
+
     public boolean equals(Space other) {
         return this.column == other.column && this.row == other.row;
     }

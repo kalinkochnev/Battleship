@@ -47,7 +47,7 @@ public class BattleBoard {
     }
 
     public Space[] getRowSpaces(int rowNum, int start, int end) {
-        Space[] newRow = new Space[end + 1- start];
+        Space[] newRow = new Space[end + 1 - start];
 
         for (int space = start; space <= end; space++) {
             newRow[space - start] = board[rowNum][space];
@@ -57,11 +57,11 @@ public class BattleBoard {
     }
 
     public Space[] getRow(int rowNum) {
-        return getRowSpaces(rowNum, 0, board.length-1);
+        return getRowSpaces(rowNum, 0, board.length - 1);
     }
 
     public Space[] getCol(int colNum) {
-        return getColumnSpaces(colNum, 0, board.length-1);
+        return getColumnSpaces(colNum, 0, board.length - 1);
     }
 
     public Space[] getColumnSpaces(int colNum, int start, int end) {
@@ -84,22 +84,23 @@ public class BattleBoard {
 
         switch (ship.getDir()) {
             case VERTICAL:
-                spaces = this.getColumnSpaces(start.column, start.row, start.row + ship.length());
+                spaces = this.getColumnSpaces(start.column, start.row, start.row + ship.length() - 1);
             case HORIZONTAL:
-                spaces = this.getRowSpaces(start.row, start.column, start.column + ship.length());
+                spaces = this.getRowSpaces(start.row, start.column, start.column + ship.length() - 1);
         }
 
         ShipPart[] parts = ShipPart.generateParts(ship.length(), false);
-        parts = ShipPart.setSpaces(parts, spaces);
+
+        ShipPart.setSpaces(parts, spaces);
         ship.setShipParts(parts);
 
-        if (this.inBounds(ship) && spaces.length != 0) {
+        /*if (this.inBounds(spaces[0]) && this.inBounds(spaces[ship.length()-1])) {
             for (int space = 0; space < spaces.length; space++) {
                 ShipPart part = ship.getShipPart(space);
                 Space shipPartSpace = spaces[space];
                 shipPartSpace.setShipPart(part);
                 part.setSpace(shipPartSpace);
             }
-        }
+        }*/
     }
 }

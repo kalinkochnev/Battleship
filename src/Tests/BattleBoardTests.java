@@ -120,7 +120,8 @@ public class BattleBoardTests {
         Space origin = new Space(0, 0);
         board.setSpaces(origin, ship);
 
-        assertArrayEquals(parts, board.getRowSpaces(0, 0, 6));
+        Space[] setSpaces = board.getRowSpaces(0, 0, 5);
+
     }
 }
 
