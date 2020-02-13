@@ -14,8 +14,8 @@ public class Team {
 
     public void initShips() {
         Ship carrier = new Ship(this, Ship.direction.NONE, ShipPart.generateParts(5, false));
-        Ship battleship = new Ship(this, Ship.direction.NONE, ShipPart.generateParts())
-        Ship cruiser = new Ship(this, Ship.direction.NONE, ShipPart.generateParts(4, false));
+        Ship battleship = new Ship(this, Ship.direction.NONE, ShipPart.generateParts(4, false));
+        Ship cruiser = new Ship(this, Ship.direction.NONE, ShipPart.generateParts(3, false));
         Ship sub = new Ship(this, Ship.direction.NONE, ShipPart.generateParts(3, false));
         Ship destroyer = new Ship(this, Ship.direction.NONE, ShipPart.generateParts(2, false));
         Ship[] ships = new Ship[]{carrier, cruiser, sub, destroyer};
