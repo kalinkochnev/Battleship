@@ -46,11 +46,19 @@ public class BattleBoard {
         return false;
     }
 
+    public Space getSpace(int row, int column) {
+        return this.board[row][column];
+    }
+
+    public Space getSpace(Space space) {
+        return this.board[space.row][space.column];
+    }
+
     public Space[] getRowSpaces(int rowNum, int start, int end) {
         Space[] newRow = new Space[end + 1 - start];
 
         for (int space = start; space <= end; space++) {
-            newRow[space - start] = board[rowNum][space];
+            newRow[space - start] = this.getSpace(rowNum, space);
         }
 
         return newRow;
@@ -68,14 +76,18 @@ public class BattleBoard {
         Space[] spaces = new Space[end + 1 - start];
 
         for (int row = start; row <= end; row++) {
-            spaces[row - start] = board[row][colNum];
+            spaces[row - start] = this.getSpace(row, colNum);
         }
 
         return spaces;
     }
 
-    Space[] getColumn(int colNum) {
+    public Space[] getColumn(int colNum) {
         return getColumnSpaces(colNum, 0, board.length);
+    }
+
+    public boolean isTaken(Space space) {
+        return this.getSpace(space).getShipPart() == null;
     }
 
     // Test that the spaces are the same length as the ship
@@ -94,13 +106,5 @@ public class BattleBoard {
         ShipPart.setSpaces(parts, spaces);
         ship.setShipParts(parts);
 
-        /*if (this.inBounds(spaces[0]) && this.inBounds(spaces[ship.length()-1])) {
-            for (int space = 0; space < spaces.length; space++) {
-                ShipPart part = ship.getShipPart(space);
-                Space shipPartSpace = spaces[space];
-                shipPartSpace.setShipPart(part);
-                part.setSpace(shipPartSpace);
-            }
-        }*/
     }
 }

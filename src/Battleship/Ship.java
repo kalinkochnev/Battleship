@@ -46,6 +46,9 @@ public class Ship {
     public ShipPart getShipPart(int index) {
         return this.shipParts.get(index);
     }
+    public Ship[] getShipParts() {
+        return (Ship[]) this.shipParts.toArray();
+    }
 
     /*public void setShipParts(List ships) {
         this.

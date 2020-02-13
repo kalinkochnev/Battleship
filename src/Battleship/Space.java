@@ -27,6 +27,10 @@ public class Space {
         }
     }
 
+    public ShipPart getShipPart() {
+        return part;
+    }
+
 
     public boolean equals(Space other) {
         return this.column == other.column && this.row == other.row;

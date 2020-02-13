@@ -27,7 +27,8 @@ public class TeamTests {
         assertEquals(cruiser, team.getShip(1));
         assertEquals(sub, team.getShip(2));
         assertEquals(destroyer, team.getShip(3));
-
     }
+
+
 }
 
